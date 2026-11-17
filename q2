@@ -1,0 +1,31 @@
+theta = 1;
+c = 0.5;
+dt = 0.01;
+T = 10;
+N = round(T/dt);
+
+X = zeros(1, N+1);
+X(1) = 2;
+
+for n = 1:N
+    dW = sqrt(dt)*randn;
+    X(n+1) = X(n) - theta*X(n)*dt + c*dW;
+end
+
+t = 0:dt:T;
+plot(t, X)
+xlabel('t')
+ylabel('X')
+
+
+Y = zeros(1, N+1);
+Y(1) = 2;
+
+for n = 1:N
+    dW = sqrt(dt)*randn;
+    X(n+1) = X(n) - theta*X(n)*dt + c*dW;   
+    Y(n+1) = Y(n) + c*dW;                  
+end
+
+plot(t, X, 'b', t, Y, 'r')
+legend('f = -\theta X (bowl)', 'f = 0 (flat table)')
